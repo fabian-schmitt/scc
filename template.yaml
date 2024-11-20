@@ -33,6 +33,7 @@ spec:
       required:
         - clusterId
         - namespace
+        - env
       properties:
         clusterId:
           title: Cluster Id
@@ -43,6 +44,10 @@ spec:
           title: Namespace
           type: string
           description: In which namespace the application should be deployed
+        env: 
+          title: env
+          type: string
+          description: environment
 
   steps:
     - id: templateGitOps
@@ -58,6 +63,7 @@ spec:
           defaultBranch: main
           clusterId: ${{parameters.clusterId}}
           namespace: ${{parameters.namespace}}
+          env: ${{parameters.env}}
           user: ${{user.entity.metadata.name}}
           gitlabGroup: ${{parameters.gitlabGroup}}
         targetPath: ./tenant-gitops
